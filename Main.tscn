@@ -1,0 +1,111 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/player.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/tile_0022.png" type="Texture" id=3]
+[ext_resource path="res://Crowd.tscn" type="PackedScene" id=4]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/tile_0085.png" type="Texture" id=5]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/tile_0084.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" type="Node2D" parent="."]
+position = Vector2( 523.878, 332.995 )
+script = ExtResource( 2 )
+
+[node name="player_sprite" type="Sprite" parent="Player"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 878.2, 71.6, 76.4222, 40.5333 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="GossipIcon" type="TextureRect" parent="Player/Camera2D/CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -59.0
+margin_top = 17.0
+margin_right = -19.0
+margin_bottom = 57.0
+texture = ExtResource( 6 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoGossipIcon" type="TextureRect" parent="Player/Camera2D/CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -59.0
+margin_top = 17.0
+margin_right = -19.0
+margin_bottom = 57.0
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GossipLabel" type="Label" parent="Player/Camera2D/CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -127.053
+margin_top = 28.5948
+margin_right = 6.94702
+margin_bottom = 42.5948
+text = "Gossip:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisguiseIcon" type="TextureRect" parent="Player/Camera2D/CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -59.0
+margin_top = 67.4703
+margin_right = -19.0
+margin_bottom = 107.47
+texture = ExtResource( 6 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DisguiseLabel" type="Label" parent="Player/Camera2D/CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -129.416
+margin_top = 76.8294
+margin_right = 4.58423
+margin_bottom = 90.8294
+text = "Disguise:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerCollider" type="Area2D" parent="Player"]
+
+[node name="PlayerColliderShape" type="CollisionShape2D" parent="Player/PlayerCollider"]
+scale = Vector2( 2, 2 )
+shape = SubResource( 1 )
+
+[node name="Ref Dummy" type="Node2D" parent="."]
+position = Vector2( 422.249, 318.274 )
+
+[node name="Sprite" type="Sprite" parent="Ref Dummy"]
+scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Crowd" parent="." instance=ExtResource( 4 )]
+position = Vector2( 656.741, 272.307 )

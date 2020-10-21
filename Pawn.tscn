@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Pawn.gd" type="Script" id=1]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/greenman.png" type="Texture" id=2]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/blueman.png" type="Texture" id=3]
+[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/redman.png" type="Texture" id=4]
+
+[node name="Pawn" type="Node2D"]
+scale = Vector2( 5, 5 )
+script = ExtResource( 1 )
+blue_skin = ExtResource( 3 )
+red_skin = ExtResource( 4 )
+green_skin = ExtResource( 2 )
+
+[node name="pawn_sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
