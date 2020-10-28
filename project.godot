@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player.gd"
+}, {
+"base": "TextureRect",
+"class": "UIColorBox",
+"language": "GDScript",
+"path": "res://GossipIcon.gd"
 } ]
 _global_script_class_icons={
 "Pawn": "",
-"Player": ""
+"Player": "",
+"UIColorBox": ""
 }
 
 [application]

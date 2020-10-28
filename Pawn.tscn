@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Pawn.gd" type="Script" id=1]
-[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/greenman.png" type="Texture" id=2]
-[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/blueman.png" type="Texture" id=3]
-[ext_resource path="res://kenney_microroguelike_1.2/Tiles/Colored/redman.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/greenman.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/blueman.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/redman.png" type="Texture" id=4]
+[ext_resource path="res://kenney_emotespack/PNG/Pixel/Style 1/emote_dots3.png" type="Texture" id=5]
 
 [node name="Pawn" type="Node2D"]
 scale = Vector2( 5, 5 )
+z_as_relative = false
 script = ExtResource( 1 )
 blue_skin = ExtResource( 3 )
 red_skin = ExtResource( 4 )
@@ -14,3 +16,8 @@ green_skin = ExtResource( 2 )
 
 [node name="pawn_sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
+
+[node name="emote_dots3" type="Sprite" parent="."]
+position = Vector2( 0, -6.6 )
+scale = Vector2( 0.291446, 0.258731 )
+texture = ExtResource( 5 )

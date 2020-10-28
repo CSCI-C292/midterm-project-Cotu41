@@ -1,17 +1,23 @@
 extends Node2D
 
 
-enum types {CROWD_NEUTRAL, CROWD_BLUE, CROWD_RED, CROWD_GREEN}
+enum types {CROWD_NEUTRAL = 0, CROWD_RED = 1, CROWD_BLUE = 2, CROWD_GREEN = 3}
 
 var _type = types.CROWD_NEUTRAL
 var _size : int
 var _pawn_members : Array
 var _spread_dist : float = 4
+
+var _emote_countdown : float = 6 * randf() #every zero to six seconds
+
+export var crowd_type : int
+
 func init_pawns(crowd_type):
 	
 
 	
 	_type = crowd_type
+	self.name = str("Crowd-", _type)
 	randomize()
 	_size = randi() % 25 + 10  # random number of people between 10 and 25
 	
@@ -26,8 +32,14 @@ func init_pawns(crowd_type):
 	
 	for i in _size:
 		var pawnscene = _pawnScene.instance()
-		var pawn = pawnscene.get_child(0) as Pawn
 		add_child(pawnscene)
+		
+		var pawn = pawnscene as Pawn
+		
+		# give our new pawn its correct color
+		if pawn is Pawn:
+			_pawn_members.append(pawn) # add our pawn to our array
+			pawn.setSkin(crowd_type)
 		
 		# archemedes was pretty smart
 		# pick a randomm point in a radius around the crowd center to place pawn
@@ -45,33 +57,35 @@ func init_pawns(crowd_type):
 	
 
 func _ready():
-	init_pawns(types.CROWD_RED)
+	init_pawns(crowd_type)
+	pass
+
+func _process(delta):
+	if _emote_countdown < 0:
+		# EMOTE
+		_member_emote()
+		_emote_countdown = 6 * randf()
+	else:
+		_emote_countdown -= delta
+		
+
+func _member_emote():
+	
+	# pick random member
+	var rMember = _pawn_members[randi() % _size] as Pawn
+	rMember._emote()
 	pass
 
 
-
-
-
-
-#I'm going to be refining this soon
-#if you don't have space between one crowd and another it won't register the
-#second crowd. It needs work
 func _on_crowd_radius_area_entered(area):
-	
 	var owner = area.get_parent()
 	if owner is Player:
-		if _type == types.CROWD_BLUE:
-			owner._in_gossip_zone = 2
-		if _type == types.CROWD_RED:
-			owner._in_gossip_zone = 1
-		if _type == types.CROWD_GREEN:
-			owner._in_gossip_zone = 3
+		owner._in_gossip_zone += _type
 		
-
 
 
 func _on_crowd_radius_area_exited(area):
 	var owner = area.get_parent()
 	if owner is Player:
-		owner._in_gossip_zone = 0
-	pass # Replace with function body.
+		owner._in_gossip_zone -= _type
+	
