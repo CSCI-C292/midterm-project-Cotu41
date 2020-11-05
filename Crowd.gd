@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Crowd
+
 
 enum types {CROWD_NEUTRAL = 0, CROWD_RED = 1, CROWD_BLUE = 2, CROWD_GREEN = 3}
 
@@ -7,9 +9,13 @@ var _type = types.CROWD_NEUTRAL
 var _size : int
 var _pawn_members : Array
 var _spread_dist : float = 4
+var riled : bool = false
+var moveTarget : Vector2
+var moving : bool = false
+export var move_speed : float = 150 #arbitrary
 
 var _emote_countdown : float = 6 * randf() #every zero to six seconds
-
+var _tempGossip : int = 0
 export var crowd_type : int
 
 func init_pawns(crowd_type):
@@ -56,8 +62,22 @@ func init_pawns(crowd_type):
 		pawnscene.position.y = r * sin(t) * (_spread_dist * _size)
 	
 
+func moveToCrowd(other : Crowd):
+	moveTarget = other.position
+	moving = true
+	riled = true
+	other.riled = true
+	for i in _pawn_members:
+		if i is Pawn:
+			i.rileUp()
+	for i in other._pawn_members:
+		if i is Pawn:
+			i.rileUp()
+	
+
 func _ready():
 	init_pawns(crowd_type)
+	Director.crowds.append(self)
 	pass
 
 func _process(delta):
@@ -68,6 +88,12 @@ func _process(delta):
 	else:
 		_emote_countdown -= delta
 		
+	if moving == true:
+		if position == moveTarget:
+			moving = false
+		else:
+			var normDir = position.direction_to(moveTarget)
+			position = position.move_toward(moveTarget, move_speed*delta)
 
 func _member_emote():
 	
@@ -80,12 +106,17 @@ func _member_emote():
 func _on_crowd_radius_area_entered(area):
 	var owner = area.get_parent()
 	if owner is Player:
-		owner._in_gossip_zone += _type
+		Director.currentPlayerCrowd.append(self)
+		_tempGossip = owner._in_gossip_zone
+		owner._in_gossip_zone = _type
 		
 
 
 func _on_crowd_radius_area_exited(area):
 	var owner = area.get_parent()
 	if owner is Player:
-		owner._in_gossip_zone -= _type
+		Director.currentPlayerCrowd.remove(
+			Director.currentPlayerCrowd.find(self))
+		owner._in_gossip_zone = _tempGossip
+		
 	

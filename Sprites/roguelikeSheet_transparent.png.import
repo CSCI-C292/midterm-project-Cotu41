@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emote_anger.png-7b874944553aec2682e8564ce846b1b9.stex"
+path="res://.import/roguelikeSheet_transparent.png-43cf0725a1d8821a7021f1ea277d5c68.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://kenney_emotespack/PNG/Pixel/Style 1/emote_anger.png"
-dest_files=[ "res://.import/emote_anger.png-7b874944553aec2682e8564ce846b1b9.stex" ]
+source_file="res://Sprites/roguelikeSheet_transparent.png"
+dest_files=[ "res://.import/roguelikeSheet_transparent.png-43cf0725a1d8821a7021f1ea277d5c68.stex" ]
 
 [params]
 

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node2D",
+"class": "Crowd",
+"language": "GDScript",
+"path": "res://Crowd.gd"
+}, {
+"base": "Node2D",
 "class": "Pawn",
 "language": "GDScript",
 "path": "res://Pawn.gd"
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://GossipIcon.gd"
 } ]
 _global_script_class_icons={
+"Crowd": "",
 "Pawn": "",
 "Player": "",
 "UIColorBox": ""
@@ -35,6 +41,10 @@ _global_script_class_icons={
 config/name="Evesdropper"
 run/main_scene="res://Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Director="*res://Director.gd"
 
 [input]
 
@@ -66,4 +76,5 @@ interact={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_environment="res://default_env.tres"

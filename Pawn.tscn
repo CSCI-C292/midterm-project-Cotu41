@@ -1,10 +1,17 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Pawn.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/greenman.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/blueman.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/redman.png" type="Texture" id=4]
 [ext_resource path="res://kenney_emotespack/PNG/Pixel/Style 1/emote_dots3.png" type="Texture" id=5]
+[ext_resource path="res://kenney_emotespack/PNG/Pixel/Style 1/emote_anger.png" type="Texture" id=6]
+[ext_resource path="res://talk3.wav" type="AudioStream" id=7]
+[ext_resource path="res://argue2.wav" type="AudioStream" id=8]
+[ext_resource path="res://argue1.wav" type="AudioStream" id=9]
+[ext_resource path="res://talk1.wav" type="AudioStream" id=10]
+[ext_resource path="res://argue3.wav" type="AudioStream" id=11]
+[ext_resource path="res://talk2.wav" type="AudioStream" id=12]
 
 [node name="Pawn" type="Node2D"]
 scale = Vector2( 5, 5 )
@@ -13,6 +20,8 @@ script = ExtResource( 1 )
 blue_skin = ExtResource( 3 )
 red_skin = ExtResource( 4 )
 green_skin = ExtResource( 2 )
+talk_audio = [ ExtResource( 10 ), ExtResource( 12 ), ExtResource( 7 ) ]
+riled_audio = [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ) ]
 
 [node name="pawn_sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -21,3 +30,15 @@ texture = ExtResource( 4 )
 position = Vector2( 0, -6.6 )
 scale = Vector2( 0.291446, 0.258731 )
 texture = ExtResource( 5 )
+
+[node name="emote_anger" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -6.6 )
+scale = Vector2( 0.291446, 0.258731 )
+z_index = 1
+texture = ExtResource( 6 )
+
+[node name="mouth" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -18.175
+pitch_scale = 1.08

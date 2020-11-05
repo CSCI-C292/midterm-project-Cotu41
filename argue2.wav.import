@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/argue2.wav-d6e794c174f599a4c32363dfb766fa3c.sample"
+
+[deps]
+
+source_file="res://argue2.wav"
+dest_files=[ "res://.import/argue2.wav-d6e794c174f599a4c32363dfb766fa3c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
