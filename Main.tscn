@@ -669,7 +669,7 @@ position = Vector2( 1127.47, 665.799 )
 crowd_type = 1
 
 [node name="Crowd9" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1127.47, 145.799 )
+position = Vector2( 1128.1, 146.429 )
 crowd_type = 2
 
 [node name="Crowd10" parent="." instance=ExtResource( 4 )]
@@ -751,6 +751,8 @@ region_rect = Rect2( 446, 153, 12, 16 )
 
 [node name="Spycatcher" parent="." instance=ExtResource( 14 )]
 position = Vector2( 97.4434, 118.801 )
+detection_radius = 400.0
+chase_speed = 130.0
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )

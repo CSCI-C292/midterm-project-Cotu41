@@ -11,6 +11,7 @@ extents = Vector2( 7.97655, 6.55771 )
 
 [node name="Coatroom" type="Node2D"]
 scale = Vector2( 5, 5 )
+z_as_relative = false
 script = ExtResource( 2 )
 blue_skin = ExtResource( 3 )
 red_skin = ExtResource( 5 )

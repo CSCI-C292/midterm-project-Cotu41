@@ -56,7 +56,23 @@ func playerCaught():
 	numRiles = 0
 	get_tree().change_scene("res://GameOver.tscn")
 	pass
+	
+func nearestCrowdTo(spot : Vector2, disguise : int) -> Crowd:
+	var dist = 99999
+	var closestCrowd : Crowd
+	
+	if disguise == 0:
+		return null
+	
+	for i in crowds:
+		if i is Crowd:
+			if spot.distance_to(i.position) < dist and i._type == disguise:
+				dist = spot.distance_to(i.position)
+				closestCrowd = i
+				
+	return closestCrowd
 
 func checkPlayerEscape():
 	if numRiles >= riles_to_win:
+		numRiles = 0
 		get_tree().change_scene("res://Win.tscn")

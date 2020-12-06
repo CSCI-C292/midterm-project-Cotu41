@@ -50,6 +50,7 @@ func _ready():
 	
 	_gossipIcon = find_node("GossipIcon", true, true) as UIColorBox
 	_disguiseIcon = find_node("DisguiseIcon", true, true) as UIColorBox
+	_collider = $PlayerCollider
 	
 	Director.player = self
 
@@ -61,6 +62,8 @@ func _process(delta):
 	self.z_index = global_position.y
 	
 	var temp_speed : float = _player_speed
+	
+	
 	
 	#crowd dynamics
 	if _in_gossip_zone > 0:
@@ -129,15 +132,15 @@ func _update_physics(delta : float):
 		
 	velocity += acceleration*delta
 	
-	print(_in_gossip_zone)
 	
 	var oppVel := Vector2(velocity.x*-1*_floor_friction, velocity.y*-1*_floor_friction)
+	
 	velocity += oppVel*delta
 	
 	if _in_gossip_zone == 0 or _disguise == _in_gossip_zone:
 		var oppAcc := Vector2(acceleration.x*-1*_floor_friction, acceleration.y*-1*_floor_friction)
 		acceleration += oppAcc*delta
-	
+		print(acceleration, " v ", oppAcc)
 
 #simple function for adding in "force" (force just being acc. since no mass)
 func shove(acceleration : Vector2):
@@ -145,12 +148,12 @@ func shove(acceleration : Vector2):
 
 
 func _on_PlayerCollider_area_entered(area):
-	
+	return
 	var owner = area.get_parent() as Node2D
 	if owner.name.begins_with("@Crowd") or owner.name.begins_with("Crowd" ):
 		if _disguise != owner.name.split_floats("-", false)[1]:
 			print(-1*(self.position.distance_to(owner.position))*self.position.direction_to(owner.position)*8)
-			shove(-1*(16000*8/self.position.distance_to(owner.position))*self.position.direction_to(owner.position))
+			
 			
 	
 	pass # Replace with function body.

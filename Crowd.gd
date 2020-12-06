@@ -12,11 +12,14 @@ var _spread_dist : float = 4
 var riled : bool = false
 var moveTarget : Vector2
 var moving : bool = false
+var radius : Area2D
 export var move_speed : float = 150 #arbitrary
 
 var _emote_countdown : float = 6 * randf() #every zero to six seconds
 var _tempGossip : int = 0
 export var crowd_type : int
+
+var unwanted_guest_present : bool = false
 
 func init_pawns(crowd_type):
 	
@@ -78,9 +81,15 @@ func moveToCrowd(other : Crowd):
 func _ready():
 	init_pawns(crowd_type)
 	Director.crowds.append(self)
+	radius = $crowd_radius
 	pass
 
 func _process(delta):
+	
+	if unwanted_guest_present:
+		var player : Player = Director.player
+		player.shove(-1*(1600*8/player.position.distance_to(self.position))*player.position.direction_to(self.position))
+	
 	if _emote_countdown < 0:
 		# EMOTE
 		_member_emote()
@@ -106,17 +115,32 @@ func _member_emote():
 func _on_crowd_radius_area_entered(area):
 	var owner = area.get_parent()
 	if owner is Player:
+
 		Director.currentPlayerCrowd.append(self)
-		_tempGossip = owner._in_gossip_zone
-		owner._in_gossip_zone = _type
+		if owner._disguise != _type:
+			unwanted_guest_present = true
+			
+		else:
+			_tempGossip = owner._in_gossip_zone
+			owner._in_gossip_zone = _type
 		
 
 
 func _on_crowd_radius_area_exited(area):
 	var owner = area.get_parent()
 	if owner is Player:
+		unwanted_guest_present = false
 		Director.currentPlayerCrowd.remove(
 			Director.currentPlayerCrowd.find(self))
-		owner._in_gossip_zone = _tempGossip
+		print(Director.currentPlayerCrowd)
+		if Director.currentPlayerCrowd.empty():
+			owner._in_gossip_zone = 0
+		else:
+			for crowd in Director.currentPlayerCrowd:
+				if area.overlaps_area(crowd.radius):
+					owner._in_gossip_zone = crowd._type
+				else:
+					owner._in_gossip_zone = 0
+		
 		
 	

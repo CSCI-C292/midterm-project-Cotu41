@@ -28,7 +28,7 @@ texture = ExtResource( 4 )
 
 [node name="emote_dots3" type="Sprite" parent="."]
 position = Vector2( 0, -6.6 )
-scale = Vector2( 0.291446, 0.258731 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 5 )
 
 [node name="emote_anger" type="Sprite" parent="."]
