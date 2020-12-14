@@ -3,7 +3,7 @@ extends TextureRect
 export var timeToAppear = 3
 
 func _process(delta):
-	self.texture.
+	pass
 
 func _ready():
 	pass

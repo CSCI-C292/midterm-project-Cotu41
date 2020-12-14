@@ -75,7 +75,7 @@ func _process(delta):
 	_update_physics(delta)
 	
 	#normalized movement vector
-	var move_vector = Vector2(0, 0)
+	var move_vector : Vector2 = Vector2(0, 0)
 	# User Input - MOVEMENT
 	if Input.is_action_pressed("move_up"):
 		move_vector.y += -1
@@ -86,6 +86,7 @@ func _process(delta):
 	if Input.is_action_pressed("move_right"):
 		move_vector.x += 1
 	
+	move_vector = move_vector.normalized()
 	velocity += move_vector*temp_speed # apply movement, scale by speed
 		
 	#gossip interaction
@@ -96,10 +97,8 @@ func _process(delta):
 			
 		elif _gossip != 0 and _disguise == _in_gossip_zone:
 			if _gossip != _in_gossip_zone:
-				print("passed gossip ", _gossip, " to a crowd of ", _in_gossip_zone)
 				Director.sendGossip()
 				_gossip = 0
-		print("LINE 52(Player)\tGOSSIP: ", _gossip)
 		#set our player's current gossip to the crowd they just got it from
 		_gossipIcon.setSkin(_gossip)
 		_gossipCooldown = _inputCooldownDuration
@@ -127,8 +126,8 @@ func _update_physics(delta : float):
 	position.x += velocity.x*delta
 	if position.x < 20:
 		position.x = 20
-	elif position.x > 1320:
-		position.x = 1320
+	elif position.x > 1400:
+		position.x = 1400
 		
 	velocity += acceleration*delta
 	
@@ -154,9 +153,7 @@ func _on_PlayerCollider_area_entered(area):
 		if _disguise != owner.name.split_floats("-", false)[1]:
 			print(-1*(self.position.distance_to(owner.position))*self.position.direction_to(owner.position)*8)
 			
-			
-	
-	pass # Replace with function body.
+
 
 
 func _on_door_area_area_shape_entered(area_id, area, area_shape, self_shape):

@@ -1,0 +1,202 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Sprites/coatroom_blue.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/missioncomplete.png" type="Texture" id=2]
+[ext_resource path="res://HammersmithOne-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sprites/coatroom_green.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/coatroom_red.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/catcher.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/greenman.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/redman.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/blueman.png" type="Texture" id=9]
+[ext_resource path="res://icon.png" type="Texture" id=10]
+[ext_resource path="res://Intro.gd" type="Script" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="IntroScreen" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color( 0.988235, 0.788235, 0.611765, 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -0.523392
+margin_top = -0.943848
+margin_right = -0.523376
+margin_bottom = -0.943848
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -416.793
+margin_top = -177.841
+margin_right = 424.207
+margin_bottom = 267.159
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -58.4739
+margin_top = -44.4985
+margin_right = 499.526
+margin_bottom = -23.4985
+custom_fonts/font = SubResource( 1 )
+text = "The world is in peril."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -57.9126
+margin_top = 1.52247
+margin_right = 732.087
+margin_bottom = 22.5225
+custom_fonts/font = SubResource( 1 )
+text = "The dastardly members of The League of Villians have acquired nuclear arms and taken the world hostage.  "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -57.9126
+margin_top = 90.0837
+margin_right = 732.087
+margin_bottom = 135.084
+custom_fonts/font = SubResource( 1 )
+text = "Tonight, the bi-annual League meetup is happening- and villians of the League's 3 major organizations  
+(Codenamed: RED, GREEN, and BLUE) are gathered to celebrate their recent hostage-taking. "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -57.9126
+margin_top = 152.084
+margin_right = 772.087
+margin_bottom = 221.084
+custom_fonts/font = SubResource( 1 )
+text = "You are the world's greatest political sabotuer, and the only person for the job. If any of the villians realize there
+is a spy afoot, the world could be destroyed by nuclear conflict. The only way for the League to be beaten is to
+turn them against each other... "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label7" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -57.6589
+margin_top = 236.247
+margin_right = 772.341
+margin_bottom = 473.247
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.223529, 0.796078, 0.972549, 1 )
+text = "Use WASD to move and E to interact.
+
+You can hide from Spycatchers in crowds, but you need to be wearing the same color to get in
+
+Get a disguise with E at a Coatroom
+
+When inside a crowd, gather gossip with E. Then, enter a crowd from a different organization and use E to spread
+the gossip, starting a dispute.
+
+If you can start 5 Disputes, the League will be broken from the inside out. Good Luck. PRESS E TO BEGIN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Panel"]
+anchor_left = 0.095
+anchor_top = 0.141
+anchor_right = 0.095
+anchor_bottom = 0.141
+margin_left = -25.9126
+margin_top = 25.5225
+margin_right = 764.087
+margin_bottom = 70.5225
+custom_fonts/font = SubResource( 1 )
+text = "They have also smartly rebranded as The League of Nuclear Armed Villians- so people know what they're
+really about."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( 358.276, 328.31 )
+scale = Vector2( 4.55847, 4.55847 )
+texture = ExtResource( 10 )
+
+[node name="blueman" type="Sprite" parent="."]
+position = Vector2( 843.565, 361.962 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 9 )
+
+[node name="catcher" type="Sprite" parent="."]
+position = Vector2( 770.31, 375.506 )
+scale = Vector2( 5.12035, 5.12035 )
+texture = ExtResource( 6 )
+
+[node name="redman" type="Sprite" parent="."]
+position = Vector2( 891.596, 391.56 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 8 )
+
+[node name="greenman" type="Sprite" parent="."]
+position = Vector2( 932.624, 358.857 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 7 )
+
+[node name="coatroom_green" type="Sprite" parent="."]
+position = Vector2( 434.67, 427.831 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+
+[node name="coatroom_red" type="Sprite" parent="."]
+position = Vector2( 375.047, 427.831 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="coatroom_blue" type="Sprite" parent="."]
+position = Vector2( 495.157, 427.236 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
